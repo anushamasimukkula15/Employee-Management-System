@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Search Employee</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #222;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #222;
+            padding: 20px;
+            color: white;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            color: #00bcd4;
+        }
+
+        .container {
+            width: 95%;
+            margin: 30px auto;
+            padding: 25px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px #ccc;
+            overflow-x: auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .search-form {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        input {
+            width: 60%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 12px 20px;
+            background-color: #00a6c7;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #007c96;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: #3512b6;
+            color: white;
+            padding: 12px;
+        }
+
+        td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            input {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+
+        <div class="logo">
+            Employee Management System
+        </div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/employees">Employees</a>
+            <a href="/add-employee">Add Employee</a>
+            <a href="/search">Search</a>
+        </div>
+
+    </nav>
+
+    <!-- Search Container -->
+    <div class="container">
+
+        <h1>Search Employee</h1>
+
+        <form action="/search" method="POST" class="search-form">
+
+            <input
+                type="text"
+                name="keyword"
+                placeholder="Enter employee name, email or department"
+                required>
+
+            <button type="submit">Search</button>
+
+        </form>
+
+        <!-- Results Table -->
+        {% if results %}
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Employee Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Department</th>
+                    <th>Salary</th>
+                    <th>Joining Date</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for employee in results %}
+
+                <tr>
+                    <td>{{ employee["id"] }}</td>
+                    <td>{{ employee["employeename"] }}</td>
+                    <td>{{ employee["email"] }}</td>
+                    <td>{{ employee["phone_number"] }}</td>
+                    <td>{{ employee["department"] }}</td>
+                    <td>{{ employee["salary"] }}</td>
+                    <td>{{ employee["Joining_Date"] }}</td>
+                    <td>{{ employee["address"] }}</td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        {% elif request.method == "POST" %}
+
+        <p class="no-results">No employee found.</p>
+
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>

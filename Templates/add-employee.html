@@ -1,0 +1,386 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Employee - Employee Management System</title>
+
+    <style>
+
+        /* Basic Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #222;
+            transition: 0.3s;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            padding: 15px 30px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        /* Theme Buttons */
+        .theme-buttons {
+            display: flex;
+            gap: 10px;
+            margin-left: auto;
+        }
+
+        .theme-buttons a {
+            color: white;
+            text-decoration: none;
+            border: 1px solid #00bcd4;
+            border-radius: 5px;
+            padding: 8px 15px;
+            font-size: 14px;
+        }
+
+        .theme-buttons a:hover {
+            background-color: #00bcd4;
+        }
+
+        /* Form Container */
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 40px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px #ccc;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        /* Form Layout */
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            flex: 1;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        textarea {
+            height: 80px;
+            resize: vertical;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: green;
+            outline: none;
+        }
+
+        /* Buttons */
+        .button-group {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        button {
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 13px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: darkgreen;
+        }
+
+        .reset-btn {
+            background-color: #555;
+            margin-left: 10px;
+        }
+
+        .reset-btn:hover {
+            background-color: #333;
+        }
+
+        /* Light Mode */
+        body.light {
+            background-color: #f4f4f4;
+            color: #222;
+        }
+
+        body.light .container {
+            background-color: white;
+        }
+
+        body.light h1,
+        body.light label {
+            color: #333;
+        }
+
+        /* Dark Mode */
+        body.dark {
+            background-color: #121212;
+            color: white;
+        }
+
+        body.dark .container {
+            background-color: #1e1e1e;
+        }
+
+        body.dark h1,
+        body.dark label {
+            color: white;
+        }
+
+        body.dark input,
+        body.dark select,
+        body.dark textarea {
+            background-color: #333;
+            color: white;
+            border-color: #666;
+        }
+
+        body.dark input::placeholder,
+        body.dark textarea::placeholder {
+            color: #bbb;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .theme-buttons {
+                margin-left: 0;
+            }
+
+            .form-row {
+                flex-direction: column;
+            }
+
+            .container {
+                width: 95%;
+                padding: 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body class="{{ theme }}">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+
+        <div class="logo">
+            Employee Management System
+        </div>
+
+        <!-- Theme Buttons -->
+        <div class="theme-buttons">
+
+            <a href="/set-theme/light">
+                Light
+            </a>
+
+            <a href="/set-theme/dark">
+                Dark
+            </a>
+
+        </div>
+
+    </nav>
+
+    <!-- Add Employee Form -->
+    <div class="container">
+
+        <h1>Add Employee</h1>
+
+        <form action="/add-employee" method="POST">
+
+            <!-- Row 1 -->
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label for="employeename">
+                        Employee Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="employeename"
+                        name="employeename"
+                        placeholder="Enter Employee Name"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">
+                        Email ID
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter Email ID"
+                        required>
+                </div>
+
+            </div>
+
+            <!-- Row 2 -->
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label for="phone_number">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone_number"
+                        name="phone_number"
+                        placeholder="Enter Phone Number"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="department">
+                        Department
+                    </label>
+
+                    <select
+                        name="department"
+                        id="department"
+                        required>
+
+                        <option value="">Select Department</option>
+                        <option value="CSE">CSE</option>
+                        <option value="IT">IT</option>
+                        <option value="ECE">ECE</option>
+                        <option value="DS">DS</option>
+                        <option value="AI">AI</option>
+                        <option value="AGRI">AGRI</option>
+
+                    </select>
+                </div>
+
+            </div>
+
+            <!-- Row 3 -->
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label for="salary">
+                        Salary
+                    </label>
+
+                    <input
+                        type="number"
+                        id="salary"
+                        name="salary"
+                        placeholder="Enter Salary"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="Joining_Date">
+                        Joining Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="Joining_Date"
+                        name="Joining_Date"
+                        required>
+                </div>
+
+            </div>
+
+            <!-- Address -->
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label for="address">
+                        Address
+                    </label>
+
+                    <textarea
+                        id="address"
+                        name="address"
+                        placeholder="Enter Address"
+                        required></textarea>
+
+                </div>
+
+            </div>
+
+            <!-- Buttons -->
+            <div class="button-group">
+
+                <button type="submit">
+                    Add Employee
+                </button>
+
+                <button type="reset" class="reset-btn">
+                    Reset
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>

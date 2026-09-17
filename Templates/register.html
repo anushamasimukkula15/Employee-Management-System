@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Registration Form</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #cccdf7;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Heading */
+        h1 {
+            text-align: center;
+            color: #363636;
+            font-size: 28px;
+            margin-top: 40px;
+        }
+
+        /* Registration Form */
+        form {
+            width: 400px;
+            margin: 30px auto;
+            padding: 30px;
+            background-color: rgb(254, 213, 231);
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Labels */
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #8b3434;
+            font-weight: bold;
+        }
+
+        /* Input Boxes */
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #bbb;
+            border-radius: 7px;
+            font-size: 14px;
+            background-color: white;
+        }
+
+        /* Input Focus */
+        input:focus {
+            border-color: #8b3434;
+            outline: none;
+            box-shadow: 0 0 5px rgba(139, 52, 52, 0.3);
+        }
+
+        /* Buttons */
+        input[type="submit"],
+        input[type="reset"] {
+            padding: 12px 25px;
+            background-color: #000000;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        /* Button Hover */
+        input[type="submit"]:hover,
+        input[type="reset"]:hover {
+            background-color: #6f2929;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 500px) {
+            form {
+                width: 85%;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Employee Registration Form</h1>
+
+    <form id="registrationform" action="/register" method="POST">
+
+        <label for="fullname">Full Name:</label>
+
+        <input
+            id="fullname"
+            type="text"
+            placeholder="Enter your full name"
+            name="fullname"
+            required
+        >
+
+        <label for="username">Username / Email:</label>
+
+        <input
+            id="username"
+            type="email"
+            placeholder="Enter your email"
+            name="username"
+            required
+        >
+
+        <label for="password">Password:</label>
+
+        <input
+            id="password"
+            type="password"
+            placeholder="Enter your password"
+            name="password"
+            required
+        >
+
+        <input type="submit" value="Register">
+
+        <input type="reset" value="Clear">
+
+    </form>
+
+</body>
+
+</html>

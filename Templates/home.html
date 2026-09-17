@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Employee Management System</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            transition: 0.3s;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            background-color: #222;
+            color: white;
+            padding: 20px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* Navigation Links */
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px;
+        }
+
+        .nav-links a:hover {
+            color: #00bcd4;
+        }
+
+        /* Theme Buttons */
+        .theme-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .theme-buttons a {
+            color: white;
+            text-decoration: none;
+            border: 1px solid #00bcd4;
+            border-radius: 5px;
+            padding: 8px 15px;
+        }
+
+        .theme-buttons a:hover {
+            background-color: #00bcd4;
+        }
+
+        /* Content */
+        .content {
+            text-align: center;
+            padding: 70px 20px;
+        }
+
+        .content h1 {
+            margin-bottom: 15px;
+        }
+
+        .content p {
+            font-size: 18px;
+        }
+
+        /* Light Mode */
+        body.light {
+            background-color: #f5f5f5;
+            color: #222;
+        }
+
+        body.light .content p {
+            color: #555;
+        }
+
+        /* Dark Mode */
+        body.dark {
+            background-color: #121212;
+            color: white;
+        }
+
+        body.dark .content p {
+            color: #ddd;
+        }
+
+        /* Mobile View */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nav-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body class="{{ theme }}">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+
+        <div class="logo">
+            Employee Management System
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/employees">Employees</a>
+            <a href="/add-employee">Add Employee</a>
+            <a href="/search">Search</a>
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+        </div>
+
+        <!-- Theme Buttons -->
+        <div class="theme-buttons">
+            <a href="/set-theme/light">Light</a>
+            <a href="/set-theme/dark">Dark</a>
+        </div>
+
+    </nav>
+
+    <!-- Home Page Content -->
+    <div class="content">
+
+        <h1>Welcome to Employee Management System</h1>
+
+        <p>Manage employee details easily and efficiently.</p>
+
+    </div>
+
+</body>
+
+</html>

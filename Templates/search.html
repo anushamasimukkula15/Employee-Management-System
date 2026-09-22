@@ -6,125 +6,254 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Search Employee</title>
+    <title>Search Employees</title>
 
     <style>
         * {
-            margin: 0;
-            padding: 0;
             box-sizing: border-box;
         }
 
         body {
             font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            color: #222;
+            margin: 0;
+            background: #cccdf7;
+            color: #333;
+            transition: 0.3s;
         }
+
+        /* ================= NAVBAR ================= */
 
         .navbar {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            background-color: #222;
-            padding: 20px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 15px 25px;
+            background: #343a40;
             color: white;
         }
 
-        .logo {
-            font-size: 20px;
-            font-weight: bold;
+        .navbar h2 {
+            margin: 0;
+            font-size: 21px;
         }
 
         .nav-links {
             display: flex;
-            gap: 15px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
-        .nav-links a {
-            color: white;
+        .nav-links a,
+        .theme-btn {
             text-decoration: none;
+            border: none;
+            border-radius: 7px;
+            padding: 10px 14px;
+            background: #495057;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
         }
 
-        .nav-links a:hover {
-            color: #00bcd4;
+        .nav-links a:hover,
+        .theme-btn:hover {
+            background: #6c757d;
         }
+
+        .btn-logout {
+            background: #dc3545 !important;
+        }
+
+        /* ================= CONTAINER ================= */
 
         .container {
             width: 95%;
-            margin: 30px auto;
-            padding: 25px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px #ccc;
-            overflow-x: auto;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
         }
 
         h1 {
             text-align: center;
+            color: #343a40;
             margin-bottom: 25px;
         }
+
+        /* ================= SEARCH FORM ================= */
 
         .search-form {
-            text-align: center;
-            margin-bottom: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
         }
 
-        input {
-            width: 60%;
+        .search-form input {
+            width: 300px;
             padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            border: 1px solid #aaa;
+            border-radius: 7px;
+            font-size: 15px;
         }
 
-        button {
+        .search-form button {
             padding: 12px 20px;
-            background-color: #00a6c7;
-            color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 7px;
+            background: #0d6efd;
+            color: white;
+            font-weight: bold;
             cursor: pointer;
         }
 
-        button:hover {
-            background-color: #007c96;
+        .search-form button:hover {
+            background: #084298;
+        }
+
+        /* ================= TABLE ================= */
+
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
+            min-width: 850px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
         }
 
         th {
-            background-color: #3512b6;
+            background: #343a40;
             color: white;
-            padding: 12px;
         }
 
-        td {
-            padding: 12px;
-            border: 1px solid #ddd;
+        tr:nth-child(even) {
+            background: #f2f2f2;
+        }
+
+        tr:hover {
+            background: #e9ecef;
+        }
+
+        .action-cell {
+            white-space: nowrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 9px 13px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: white;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .btn-edit {
+            background: #fd7e14;
+        }
+
+        .btn-delete {
+            background: #dc3545;
+        }
+
+        .empty-message {
             text-align: center;
+            padding: 25px;
+            font-size: 17px;
+            color: #666;
         }
 
-        .no-results {
-            text-align: center;
-            padding: 20px;
+        /* ================= DARK MODE ================= */
+
+        body.dark-mode {
+            background: #121212;
+            color: #f1f1f1;
         }
 
-        @media (max-width: 768px) {
+        body.dark-mode .container {
+            background: #1e1e1e;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.08);
+        }
+
+        body.dark-mode h1 {
+            color: white;
+        }
+
+        body.dark-mode th {
+            background: #495057;
+        }
+
+        body.dark-mode td {
+            border-color: #444;
+        }
+
+        body.dark-mode tr:nth-child(even) {
+            background: #2a2a2a;
+        }
+
+        body.dark-mode tr:hover {
+            background: #383838;
+        }
+
+        body.dark-mode .empty-message {
+            color: #ccc;
+        }
+
+        body.dark-mode .search-form input {
+            background: #333;
+            color: white;
+            border-color: #666;
+        }
+
+        body.dark-mode .theme-btn {
+            background: #f5f5f5;
+            color: #222;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 700px) {
+
             .navbar {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .nav-links {
-                flex-wrap: wrap;
                 justify-content: center;
+                text-align: center;
             }
 
-            input {
+            .navbar h2 {
                 width: 100%;
-                margin-bottom: 10px;
+            }
+
+            .container {
+                padding: 20px 12px;
+            }
+
+            .search-form input {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .nav-links a,
+            .theme-btn {
+                font-size: 12px;
+                padding: 8px 10px;
             }
         }
     </style>
@@ -132,85 +261,158 @@
 
 <body>
 
-    <!-- Navbar -->
+    <!-- ================= NAVBAR ================= -->
+
     <nav class="navbar">
 
-        <div class="logo">
-            Employee Management System
-        </div>
+        <h2>👨‍💼 Employee Management</h2>
 
         <div class="nav-links">
-            <a href="/">Home</a>
-            <a href="/employees">Employees</a>
-            <a href="/add-employee">Add Employee</a>
-            <a href="/search">Search</a>
+
+            <a href="/">🏠 Home</a>
+
+            <a href="/employees">👥 Employees</a>
+
+            <a href="/add-employee">➕ Add Employee</a>
+
+            <a href="/search">🔍 Search</a>
+
+            <button id="themeToggle" class="theme-btn">
+                🌙 Dark Mode
+            </button>
+
+            <a href="/logout" class="btn-logout">
+                🚪 Logout
+            </a>
+
         </div>
 
     </nav>
 
-    <!-- Search Container -->
+    <!-- ================= SEARCH CONTAINER ================= -->
+
     <div class="container">
 
-        <h1>Search Employee</h1>
+        <h1>🔍 Search Employees</h1>
 
-        <form action="/search" method="POST" class="search-form">
+        <form method="POST" action="/search" class="search-form">
 
             <input
                 type="text"
-                name="keyword"
-                placeholder="Enter employee name, email or department"
-                required>
+                name="search"
+                placeholder="Search by name, email or department"
+                value="{{ search_query|default('') }}"
+                required
+            >
 
-            <button type="submit">Search</button>
+            <button type="submit">
+                🔍 Search
+            </button>
 
         </form>
 
-        <!-- Results Table -->
-        {% if results %}
+        {% if employees %}
 
-        <table>
+        <div class="table-wrapper">
 
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Employee Name</th>
-                    <th>Email</th>
-                    <th>Phone Number</th>
-                    <th>Department</th>
-                    <th>Salary</th>
-                    <th>Joining Date</th>
-                    <th>Address</th>
-                </tr>
-            </thead>
+            <table>
 
-            <tbody>
+                <thead>
 
-                {% for employee in results %}
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Employee Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Department</th>
+                        <th>Salary</th>
+                        <th>Joining Date</th>
+                        <th>Address</th>
+                        <th>Actions</th>
+                    </tr>
 
-                <tr>
-                    <td>{{ employee["id"] }}</td>
-                    <td>{{ employee["employeename"] }}</td>
-                    <td>{{ employee["email"] }}</td>
-                    <td>{{ employee["phone_number"] }}</td>
-                    <td>{{ employee["department"] }}</td>
-                    <td>{{ employee["salary"] }}</td>
-                    <td>{{ employee["Joining_Date"] }}</td>
-                    <td>{{ employee["address"] }}</td>
-                </tr>
+                </thead>
 
-                {% endfor %}
+                <tbody>
 
-            </tbody>
+                    {% for employee in employees|sort(attribute="id") %}
 
-        </table>
+                    <tr>
+
+                        <td>{{ employee["id"] }}</td>
+                        <td>{{ employee["employeename"] }}</td>
+                        <td>{{ employee["email"] }}</td>
+                        <td>{{ employee["phone_number"] }}</td>
+                        <td>{{ employee["department"] }}</td>
+                        <td>{{ employee["salary"] }}</td>
+                        <td>{{ employee["Joining_Date"] }}</td>
+                        <td>{{ employee["address"] }}</td>
+
+                        <td class="action-cell">
+
+                            <a
+                                href="/edit-employee/{{ employee['id'] }}"
+                                class="btn btn-edit">
+                                ✏️ Edit
+                            </a>
+
+                            <a
+                                href="/delete-employee/{{ employee['id'] }}"
+                                class="btn btn-delete"
+                                onclick="return confirm('Are you sure you want to delete this employee?');">
+                                🗑️ Delete
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
 
         {% elif request.method == "POST" %}
 
-        <p class="no-results">No employee found.</p>
+        <div class="empty-message">
+            No employees found.
+        </div>
 
         {% endif %}
 
     </div>
+
+    <!-- ================= THEME JAVASCRIPT ================= -->
+
+    <script>
+
+        const themeToggle = document.getElementById("themeToggle");
+
+        const currentTheme = "{{ theme|default('light') }}";
+
+        if (currentTheme === "dark") {
+
+            document.body.classList.add("dark-mode");
+
+            themeToggle.textContent = "☀️ Light Mode";
+
+        }
+
+        themeToggle.addEventListener("click", function () {
+
+            const isDark =
+                document.body.classList.contains("dark-mode");
+
+            const newTheme = isDark ? "light" : "dark";
+
+            window.location.href = "/set-theme/" + newTheme;
+
+        });
+
+    </script>
 
 </body>
 

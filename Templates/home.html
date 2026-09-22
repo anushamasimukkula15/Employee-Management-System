@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,151 +10,206 @@
 
     <style>
         * {
-            margin: 0;
-            padding: 0;
             box-sizing: border-box;
         }
 
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            background: #cccdf7;
+            color: #333;
             transition: 0.3s;
         }
 
-        /* Navbar */
+        /* ================= NAVBAR ================= */
+
         .navbar {
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
             flex-wrap: wrap;
-            gap: 15px;
-            background-color: #222;
+            gap: 10px;
+            padding: 15px 25px;
+            background: #343a40;
             color: white;
-            padding: 20px;
         }
 
-        .logo {
-            font-size: 20px;
+        .navbar h2 {
+            margin: 0;
+            font-size: 21px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .nav-links a,
+        .theme-btn {
+            text-decoration: none;
+            border: none;
+            border-radius: 7px;
+            padding: 10px 14px;
+            background: #495057;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
             font-weight: bold;
         }
 
-        /* Navigation Links */
-        .nav-links {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
+        .nav-links a:hover,
+        .theme-btn:hover {
+            background: #6c757d;
         }
 
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            padding: 8px;
+        .btn-logout {
+            background: #dc3545 !important;
         }
 
-        .nav-links a:hover {
-            color: #00bcd4;
-        }
+        /* ================= WELCOME ================= */
 
-        /* Theme Buttons */
-        .theme-buttons {
-            display: flex;
-            gap: 10px;
-        }
-
-        .theme-buttons a {
-            color: white;
-            text-decoration: none;
-            border: 1px solid #00bcd4;
-            border-radius: 5px;
-            padding: 8px 15px;
-        }
-
-        .theme-buttons a:hover {
-            background-color: #00bcd4;
-        }
-
-        /* Content */
-        .content {
+        .welcome {
             text-align: center;
-            padding: 70px 20px;
+            margin: 80px 15px;
         }
 
-        .content h1 {
+        .welcome h1 {
+            font-size: 34px;
+            color: #363636;
             margin-bottom: 15px;
         }
 
-        .content p {
-            font-size: 18px;
+        .welcome p {
+            font-size: 24px;
+            font-weight: bold;
+            color: #444;
         }
 
-        /* Light Mode */
-        body.light {
-            background-color: #f5f5f5;
-            color: #222;
+        /* ================= DARK MODE ================= */
+
+        body.dark-mode {
+            background: #121212;
+            color: #f1f1f1;
         }
 
-        body.light .content p {
-            color: #555;
-        }
-
-        /* Dark Mode */
-        body.dark {
-            background-color: #121212;
+        body.dark-mode .welcome h1 {
             color: white;
         }
 
-        body.dark .content p {
-            color: #ddd;
+        body.dark-mode .welcome p {
+            color: #ccc;
         }
 
-        /* Mobile View */
-        @media (max-width: 768px) {
+        body.dark-mode .theme-btn {
+            background: #f5f5f5;
+            color: #222;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 700px) {
+
             .navbar {
-                flex-direction: column;
+                justify-content: center;
                 text-align: center;
             }
 
-            .nav-links {
-                justify-content: center;
+            .navbar h2 {
+                width: 100%;
+            }
+
+            .welcome h1 {
+                font-size: 26px;
+            }
+
+            .welcome p {
+                font-size: 20px;
+            }
+
+            .nav-links a,
+            .theme-btn {
+                font-size: 12px;
+                padding: 8px 10px;
             }
         }
     </style>
 </head>
 
-<body class="{{ theme }}">
+<body>
 
-    <!-- Navbar -->
+    <!-- ================= NAVBAR ================= -->
+
     <nav class="navbar">
 
-        <div class="logo">
-            Employee Management System
-        </div>
+        <h2>👨‍💼 Employee Management</h2>
 
-        <!-- Navigation Links -->
         <div class="nav-links">
-            <a href="/">Home</a>
-            <a href="/employees">Employees</a>
-            <a href="/add-employee">Add Employee</a>
-            <a href="/search">Search</a>
-            <a href="/login">Login</a>
-            <a href="/register">Register</a>
-        </div>
 
-        <!-- Theme Buttons -->
-        <div class="theme-buttons">
-            <a href="/set-theme/light">Light</a>
-            <a href="/set-theme/dark">Dark</a>
+            <a href="/">🏠 Home</a>
+
+            <a href="/employees">👥 Employees</a>
+
+            <a href="/add-employee">➕ Add Employee</a>
+
+            <a href="/search">🔍 Search</a>
+
+            <button id="themeToggle" class="theme-btn">
+                🌙 Dark Mode
+            </button>
+
+            <a href="/logout" class="btn-logout">
+                🚪 Logout
+            </a>
+
         </div>
 
     </nav>
 
-    <!-- Home Page Content -->
-    <div class="content">
+    <!-- ================= WELCOME MESSAGE ================= -->
 
-        <h1>Welcome to Employee Management System</h1>
+    <section class="welcome">
 
-        <p>Manage employee details easily and efficiently.</p>
+        <h1>
+            Welcome Anusha!
+        </h1>
 
-    </div>
+        <p>
+            Employee Management System
+        </p>
+
+    </section>
+
+    <!-- ================= THEME JAVASCRIPT ================= -->
+
+    <script>
+
+        const themeToggle = document.getElementById("themeToggle");
+
+        const currentTheme = "{{ theme|default('light') }}";
+
+        if (currentTheme === "dark") {
+
+            document.body.classList.add("dark-mode");
+
+            themeToggle.textContent = "☀️ Light Mode";
+
+        }
+
+        themeToggle.addEventListener("click", function () {
+
+            const isDark =
+                document.body.classList.contains("dark-mode");
+
+            const newTheme = isDark ? "light" : "dark";
+
+            window.location.href = "/set-theme/" + newTheme;
+
+        });
+
+    </script>
 
 </body>
 
